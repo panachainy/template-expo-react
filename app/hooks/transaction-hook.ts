@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 interface Transaction {
@@ -12,45 +13,62 @@ interface Transaction {
 // Mock API functions (replace with actual API calls)
 const api = {
   getTransactions: async (): Promise<Transaction[]> => {
-    // Replace with actual API call
-    return JSON.parse(localStorage.getItem("transactions") || "[]");
+    try {
+      const stored = await AsyncStorage.getItem("transactions");
+      return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+      console.error("Error getting transactions:", error);
+      return [];
+    }
   },
 
   addTransaction: async (
     transaction: Omit<Transaction, "id">
   ): Promise<Transaction> => {
-    const newTransaction: Transaction = {
-      ...transaction,
-      id: Date.now().toString(),
-    };
-    const transactions = JSON.parse(
-      localStorage.getItem("transactions") || "[]"
-    );
-    const updated = [...transactions, newTransaction];
-    localStorage.setItem("transactions", JSON.stringify(updated));
-    return newTransaction;
+    try {
+      const newTransaction: Transaction = {
+        ...transaction,
+        id: Date.now().toString(),
+      };
+      const stored = await AsyncStorage.getItem("transactions");
+      const transactions = stored ? JSON.parse(stored) : [];
+      const updated = [...transactions, newTransaction];
+      await AsyncStorage.setItem("transactions", JSON.stringify(updated));
+      return newTransaction;
+    } catch (error) {
+      console.error("Error adding transaction:", error);
+      throw error;
+    }
   },
 
   updateTransaction: async (
     id: string,
     updatedTransaction: Partial<Transaction>
   ): Promise<Transaction> => {
-    const transactions = JSON.parse(
-      localStorage.getItem("transactions") || "[]"
-    );
-    const updated = transactions.map((t: Transaction) =>
-      t.id === id ? { ...t, ...updatedTransaction } : t
-    );
-    localStorage.setItem("transactions", JSON.stringify(updated));
-    return updated.find((t: Transaction) => t.id === id);
+    try {
+      const stored = await AsyncStorage.getItem("transactions");
+      const transactions = stored ? JSON.parse(stored) : [];
+      const updated = transactions.map((t: Transaction) =>
+        t.id === id ? { ...t, ...updatedTransaction } : t
+      );
+      await AsyncStorage.setItem("transactions", JSON.stringify(updated));
+      return updated.find((t: Transaction) => t.id === id);
+    } catch (error) {
+      console.error("Error updating transaction:", error);
+      throw error;
+    }
   },
 
   deleteTransaction: async (id: string): Promise<void> => {
-    const transactions = JSON.parse(
-      localStorage.getItem("transactions") || "[]"
-    );
-    const updated = transactions.filter((t: Transaction) => t.id !== id);
-    localStorage.setItem("transactions", JSON.stringify(updated));
+    try {
+      const stored = await AsyncStorage.getItem("transactions");
+      const transactions = stored ? JSON.parse(stored) : [];
+      const updated = transactions.filter((t: Transaction) => t.id !== id);
+      await AsyncStorage.setItem("transactions", JSON.stringify(updated));
+    } catch (error) {
+      console.error("Error deleting transaction:", error);
+      throw error;
+    }
   },
 };
 
