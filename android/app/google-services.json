@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "982346076797",
+    "project_id": "mini-personal-finance-app",
+    "storage_bucket": "mini-personal-finance-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982346076797:android:53ed506f195ea7099f5714",
+        "android_client_info": {
+          "package_name": "app.finance.personal.mini"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982346076797-4cr8c3qicf688cjo696df9up5b968g7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGTKKF-E3hGCnX6W_n5WFFacPdO04pg0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982346076797-4cr8c3qicf688cjo696df9up5b968g7u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "982346076797-5eudsb324v49c4vt0lln9dspup1pn4p0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.finance.personal.mini"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
