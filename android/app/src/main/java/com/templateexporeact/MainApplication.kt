@@ -1,4 +1,4 @@
-package com.anonymous.minipersonalfinaceapp
+package com.templateexporeact
 
 import android.app.Application
 import android.content.res.Configuration
