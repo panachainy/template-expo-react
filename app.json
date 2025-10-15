@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mini-personal-finace-app",
-    "slug": "mini-personal-finace-app",
+    "name": "template-expo-react",
+    "slug": "template-expo-react",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "mini-personal-finace-app",
+      "name": "template-expo-react",
       "dependencies": {
         "@expo/vector-icons": "^14.1.0",
         "@react-native-google-signin/google-signin": "^15.0.0",
